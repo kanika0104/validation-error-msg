@@ -1,0 +1,20 @@
+ $e_mail = $this->Vendor_model->check_email($username);
+
+	   if ($e_mail==false) {
+	   	$dataToReturn['status']= false;
+	   	$dataToReturn['msg'] = 'Incorrect Email';
+	   	echo json_encode($dataToReturn);
+	   	die();
+	   }
+     
+     vendor model-----------------
+     
+      public function check_email($username){
+    	$this->db->where('email',$username);
+    	$query= $this->db->get('vendor_user');
+    	if ($query->num_rows()>0){
+    		return true;
+    	}else{
+    	return false;
+    	}
+    }
